@@ -11,7 +11,8 @@ from pymongo import MongoClient
 class JsonWriterPipeline(object):
 
     def open_spider(self, spider):
-        self.db = MongoClient('mongodb://35.161.12.150/myapp', 27017).myapp.webcontents
+        # self.db = MongoClient('mongodb://35.161.12.150/myapp', 27017).myapp.webcontents
+        self.db = MongoClient('mongodb://localhost/myapp', 27017).myapp.webcontents
 
     def close_spider(self, spider):
         pass
