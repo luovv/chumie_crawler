@@ -25,5 +25,8 @@ class JsonWriterPipeline(object):
         # file.close()
 
     def process_item(self, item, spider):
-        self.db.insert_one(item)
+        try:
+            self.db.insert_one(item)
+        except:
+            print('duplicate')
         return item
