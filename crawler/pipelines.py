@@ -30,3 +30,7 @@ class JsonWriterPipeline(object):
         except:
             print('duplicate')
         return item
+
+# source /home/ubuntu/chumie/bin/activate; 
+# cd /home/ubuntu/chumie_crawler; 
+# scrapy crawl dota2_sgamer

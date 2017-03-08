@@ -5,7 +5,7 @@ import scrapy
 import re
 
 
-class QuotesSpider(scrapy.Spider):
+class Dota2SgamerSpider(scrapy.Spider):
     name = "dota2_sgamer"
     # 网站入口
     start_urls = [
