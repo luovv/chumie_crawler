@@ -45,6 +45,7 @@ class Dota2SgamerSpider(scrapy.Spider):
             'content': content,
             'crawledDate:': datetime.datetime.now(),
             'tag': ['dota2'],
-            'imgRatio':1
+            'imgRatio':1,
+            'language':'Chinese'
         }
 
