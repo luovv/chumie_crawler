@@ -29,7 +29,7 @@ class Dota2ThescoreesportsSpider(scrapy.Spider):
                 'url': url,
                 'image': image,
                 'content': content,
-                'crawledDate:': datetime.datetime.now(),
+                'postDate:': datetime.datetime.now(),
                 'tag': ['dota2'],
                 'imgRatio':ratio,
                 'language':'English'
