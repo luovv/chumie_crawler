@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 import datetime
 import scrapy
-import re
+from ..tools import *
 
 
 class Dota2ThescoreesportsSpider(scrapy.Spider):
@@ -12,18 +12,21 @@ class Dota2ThescoreesportsSpider(scrapy.Spider):
     start_urls = [
         'http://www.thescoreesports.com/dota2/news',
     ]
-    # 通过列表页采集详情页url
+
+    def __init__(self):
+        self.domain = 'http://www.thescoreesports.com'
+
     def parse(self, response):
         for i in response.xpath('//div[@class="article-tile article-tile--has-image"]'):
             image = i.xpath('a/div/img/@src').extract_first()
             url = i.xpath('a/@href').extract_first()
             title = i.xpath('a/div/div/div[@class="article-tile__headline ff-condensed"]/text()').extract_first()
             content = i.xpath('a/div/div/div[@class="article-tile__summary"]/text()').extract_first()
-            ratio = 966/1280
 
-            if not 'http' in url:
-                url = 'http://www.thescoreesports.com'+url
-            print(image)
+            url = cleanUrl(self.domain, url)
+            image = cleanUrl(self.domain, image)
+            ratio = getImgRatio(image)
+
             yield {
                 'title': title,
                 'url': url,
@@ -31,6 +34,6 @@ class Dota2ThescoreesportsSpider(scrapy.Spider):
                 'content': content,
                 'postDate': datetime.datetime.now(),
                 'tag': ['dota2'],
-                'imgRatio':ratio,
-                'language':'English'
+                'imgRatio': ratio,
+                'language': 'English'
             }

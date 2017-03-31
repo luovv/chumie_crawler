@@ -2,28 +2,29 @@
 # -*- coding: utf-8 -*-
 import datetime
 import scrapy
-import re
+from ..tools import *
+
 
 
 class Dota2GosugamersSpider(scrapy.Spider):
     name = "dota2_gosugamers"
-    # 网站入口
     start_urls = [
         'http://www.gosugamers.net/dota2/news',
     ]
-    # 通过列表页采集详情页url
+
+    def __init__(self):
+        self.domain = 'http://www.gosugamers.net'
+
     def parse(self, response):
         for i in response.xpath('//div[@class="showcase-slide"]'):
             image = i.xpath('div[@class="showcase-content"]/a/img/@src').extract_first()
             url = i.xpath('div[@class="showcase-caption"]/h2/a/@href').extract_first()
             title = i.xpath('div[@class="showcase-caption"]/h2/a/text()').extract_first()
             content = i.xpath('div[@class="showcase-caption"]/p/text()').extract_first()
-            ratio = 520/860
             # 有的url是相对路径，改成绝对路径
-            if not 'http' in url:
-                url = 'http://www.gosugamers.net'+url
-            if not 'http' in image:
-                image = 'http://www.gosugamers.net'+url   
+            url = cleanUrl(self.domain, url)
+            image = cleanUrl(self.domain, image)
+            ratio = getImgRatio(image)
 
             yield {
                 'title': title,
@@ -32,7 +33,7 @@ class Dota2GosugamersSpider(scrapy.Spider):
                 'content': content,
                 'postDate': datetime.datetime.now(),
                 'tag': ['dota2'],
-                'imgRatio':ratio,
-                'language':'English'
+                'imgRatio': ratio,
+                'language': 'English'
             }
 
