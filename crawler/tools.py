@@ -1,5 +1,6 @@
 from urllib import request
 from PIL import ImageFile
+import re
 def getImgRatio(uri):
     try:
         file = request.urlopen(uri)
@@ -20,3 +21,22 @@ def cleanUrl(domain, url):
     except:
         pass
     return url
+
+
+def removeTags(text, tag):
+    try:
+        for i in tag:
+            p = re.compile(r'</?%s.*?>'%i)
+            text = p.sub('', text)
+    except:
+        pass
+    return text
+
+
+def removeAllTags(text):
+    try:
+        p = re.compile(r'<.*?>')
+        text = p.sub('', text)
+    except:
+        pass
+    return text
