@@ -32,7 +32,7 @@ class overwatchBlizzardSpider(scrapy.Spider):
                 'image': image,
                 'content': content,
                 'postDate': datetime.datetime.now(),
-                'tag': ['overwatch'],
+                'tag': ['守望先锋'],
                 'imgRatio': ratio,
                 'language': 'Chinese'
             }
