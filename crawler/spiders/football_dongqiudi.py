@@ -35,7 +35,7 @@ class footballDongqiudiSpider(scrapy.Spider):
                 'image': image,
                 'content': content,
                 'postDate': datetime.datetime.now(),
-                'tag': ['football'],
+                'tag': ['Football'],
                 'imgRatio': ratio,
                 'language': 'Chinese'
             }

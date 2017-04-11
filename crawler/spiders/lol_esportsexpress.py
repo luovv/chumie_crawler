@@ -32,7 +32,7 @@ class LolEsportsexpressSpider(scrapy.Spider):
                 'image': image,
                 'content': content,
                 'postDate': datetime.datetime.now(),
-                'tag': ['lol'],
+                'tag': ['League of Legends'],
                 'imgRatio': ratio,
                 'language': 'English'
             }

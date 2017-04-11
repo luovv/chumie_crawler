@@ -31,7 +31,7 @@ class nbaBasketballinsidersSpider(scrapy.Spider):
                 'image': image,
                 'content': content,
                 'postDate': datetime.datetime.now(),
-                'tag': ['nba'],
+                'tag': ['Basketball'],
                 'imgRatio': ratio,
                 'language': 'English'
             }
